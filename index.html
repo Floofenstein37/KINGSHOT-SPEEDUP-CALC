@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Kingshot Speedups Calculator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+    h1 {
+      margin-bottom: 10px;
+    }
+    .container {
+      max-width: 400px;
+      margin: auto;
+      background: #1e293b;
+      padding: 20px;
+      border-radius: 12px;
+    }
+    .row {
+      display: flex;
+      justify-content: space-between;
+      margin: 8px 0;
+    }
+    input {
+      width: 80px;
+      padding: 6px;
+      border-radius: 6px;
+      border: none;
+      text-align: center;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px;
+      width: 100%;
+      background: #22c55e;
+      border: none;
+      border-radius: 8px;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>⚡ Kingshot Speedups</h1>
+
+  <div class="container">
+
+    <div class="row"><span>1 min</span><input id="m1" type="number" value="0"></div>
+    <div class="row"><span>5 min</span><input id="m5" type="number" value="0"></div>
+    <div class="row"><span>10 min</span><input id="m10" type="number" value="0"></div>
+    <div class="row"><span>30 min</span><input id="m30" type="number" value="0"></div>
+
+    <div class="row"><span>1 hr</span><input id="h1" type="number" value="0"></div>
+    <div class="row"><span>3 hr</span><input id="h3" type="number" value="0"></div>
+    <div class="row"><span>8 hr</span><input id="h8" type="number" value="0"></div>
+    <div class="row"><span>24 hr</span><input id="h24" type="number" value="0"></div>
+
+    <button onclick="calculate()">Calculate</button>
+
+    <div class="result" id="output"></div>
+  </div>
+
+  <script>
+    function calculate() {
+      let totalMinutes =
+        document.getElementById('m1').value * 1 +
+        document.getElementById('m5').value * 5 +
+        document.getElementById('m10').value * 10 +
+        document.getElementById('m30').value * 30 +
+        document.getElementById('h1').value * 60 +
+        document.getElementById('h3').value * 180 +
+        document.getElementById('h8').value * 480 +
+        document.getElementById('h24').value * 1440;
+
+      let hours = totalMinutes / 60;
+      let days = hours / 24;
+
+      document.getElementById('output').innerHTML =
+        `⏱ Total: <b>${hours.toFixed(2)}</b> hours<br>
+         📅 Days: <b>${days.toFixed(2)}</b>`;
+    }
+  </script>
+
+</body>
+</html>
